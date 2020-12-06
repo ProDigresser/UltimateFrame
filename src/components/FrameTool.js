@@ -48,20 +48,10 @@ const FrameTool = () => {
 
   function resetState() {
     resetFrameSize()
-    updateFrameType({
-      isStandard: false,
-      isInches: false,
-      isCentimeters: false
-    })
-    setDisabled(false)
     updateStandardSize('')
     updateGenerateFrameHeight([])
     updateGenerateFrameWidth([])
     updateCornerPieces('')
-    updateFrameError('')
-    updateActiveCm('')
-    updateActiveIn('')
-    updateActiveSt('')
   }
 
   function resetFrameSize() {
@@ -73,7 +63,15 @@ const FrameTool = () => {
 
   function handleFaq() {
     resetState()
-    updateActiveFaq('is-active')
+    updateActiveFaq('is-active dark-blue')
+    updateActiveCm('')
+    updateActiveIn('')
+    updateActiveSt('')
+    updateFrameType({
+      isStandard: false,
+      isInches: false,
+      isCentimeters: false
+    })
   }
 
   function handleStandard(e) {
@@ -93,7 +91,7 @@ const FrameTool = () => {
     updateActiveFaq('')
     updateActiveCm('')
     updateActiveIn('')
-    updateActiveSt('is-active')
+    updateActiveSt('is-active dark-blue')
   }
   function handleInches(e) {
     e.preventDefault()
@@ -111,7 +109,7 @@ const FrameTool = () => {
     updateStandardSize('Custom (Inches)')
     updateActiveFaq('')
     updateActiveCm('')
-    updateActiveIn('is-active')
+    updateActiveIn('is-active dark-blue')
     updateActiveSt('')
   }
   function handleCentimeters(e) {
@@ -129,16 +127,19 @@ const FrameTool = () => {
     updateFrameError('')
     updateStandardSize('Custom (Centimeters)')
     updateActiveFaq('')
-    updateActiveCm('is-active')
+    updateActiveCm('is-active dark-blue')
     updateActiveIn('')
     updateActiveSt('')
   }
 
   function changeSize(e) {
+    updateGenerateFrameHeight([])
+    updateGenerateFrameWidth([])
     updateHoldValue(e.target.value)
     updateBValue('B Sizes')
     updateAValue('A Sizes')
-
+    
+    updateCornerPieces('')
     if (e.target.value === 'Letter') {
       updateStandardSize(`${e.target.value} (Inches)`)
     } else {
@@ -362,12 +363,12 @@ const FrameTool = () => {
   }
 
 
-  return <div>
-    <section className="hero is-primary is-bold is-medium">
+  return <div id="main">
+    <section className="hero is-primary is-bold is-small">
       <div className="hero-body">
         <div className="container">
           <figure className="image is-4500x100">
-            <img src={GFALogo} />
+            <img alt="Geeky Faye Art And Logo" src={GFALogo} />
           </figure>
           <h1 className="title has-text-centered">
             Frame Planning Tool
@@ -379,22 +380,22 @@ const FrameTool = () => {
           <div className="container">
             <ul>
               <li className={activeSt} onClick={handleStandard}>
-                <div className="has-background-primary-dark ml-5 mr-3">
+                <div className="rounded-corners tab-background ml-5 mr-3">
                   <a className='has-text-centered'>Standardized:<br />A, B or Letter</a>
                 </div>
               </li>
               <li className={activeIn} onClick={handleInches}>
-                <div className="has-background-primary-dark ml-3 mr-3">
+                <div className="rounded-corners tab-background ml-3 mr-3">
                   <a className='has-text-centered'>Custom:<br />Inches</a>
                 </div>
               </li>
               <li className={activeCm} onClick={handleCentimeters}>
-                <div className="has-background-primary-dark ml-3 mr-3">
+                <div className="rounded-corners tab-background ml-3 mr-3">
                   <a className='has-text-centered'>Custom:<br />Centimeters</a>
                 </div>
               </li>
               <li className={activeFaq} onClick={handleFaq}>
-                <div className="has-background-primary-dark ml-3 mr-5">
+                <div className="rounded-corners tab-background ml-3 mr-5">
                   <a className='has-text-centered'>FAQ:<br />What is This?</a>
                 </div>
               </li>
@@ -403,7 +404,7 @@ const FrameTool = () => {
         </nav>
       </div>
     </section>
-    <section className='section'>
+    <section className='form-section section'>
       {frameType.isStandard &&
         <div className="field has-addons">
           <div className="control ml-4 mr-2">
@@ -447,15 +448,15 @@ const FrameTool = () => {
         </div>}
 
 
-      {(frameType.isStandard || frameType.isInches || frameType.isCentimeters) && <div>
+      {(frameType.isStandard || frameType.isInches || frameType.isCentimeters) && <div className="m-3 form-container">
         <h3>Measurements for {standardSize}</h3>
         <div className="field has-addons">
-          <div className="control p-2">
+          <div className="label-box control p-2">
             <p className="label">Height</p>
           </div>
           <div className="field-body">
             <div className="field">
-              <p className="control is-expanded">
+              <p className="control">
                 <input
                   className="input is-rounded"
                   type="text"
@@ -470,12 +471,12 @@ const FrameTool = () => {
           </div>
         </div>
         <div className="field has-addons">
-          <div className="control p-3">
+          <div className="label-box control p-2">
             <p className="label">Width</p>
           </div>
           <div className="field-body">
             <div className="field">
-              <p className="control is-expanded">
+              <p className="control">
                 <input
                   className="input is-rounded"
                   type="text"
@@ -489,7 +490,6 @@ const FrameTool = () => {
             </div>
           </div>
         </div>
-
 
         <div className="buttons">
           <button
@@ -511,25 +511,25 @@ const FrameTool = () => {
       </div>}
     </section>
 
-    {cornerPieces !== '' && <div>
-      <h3>Pieces required for {holdValue}:</h3>
-      <p>{cornerPieces}</p>
-      <h3>For Left & Right-</h3>
-      {generateFrameHeight.map((piece, i) => {
+    {cornerPieces !== '' && <section className="section read-container">
+      <div>
+        <h3>Pieces required for {holdValue}:</h3>
+        <p>{cornerPieces}</p>
+        <h3>For Left & Right-</h3>
+        {generateFrameHeight.map((piece, i) => {
 
-        return <p key={i}>{piece}</p>
+          return <p key={i}>{piece}</p>
 
-      })}
+        })}
 
-      <h3>For Top & Bottom-</h3>
-      {generateFrameWidth.map((piece, i) => {
-        return <p key={i}>{piece}</p>
+        <h3>For Top & Bottom-</h3>
+        {generateFrameWidth.map((piece, i) => {
+          return <p key={i}>{piece}</p>
 
-      })}
-      {frameError}
-    </div>
-    }
-
+        })}
+        {frameError}
+      </div>
+    </section>}
   </div>
 }
 

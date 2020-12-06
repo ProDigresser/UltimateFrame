@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+#main .section {
+  padding: 1.5rem;
+  background-color: white;
+}
+
+.rounded-corners {
+  border-radius: 4px 4px 0 0;
+}
+
+.label-box {
+  width: 80px;
+}
+.section.read-container, .section.form-section {
+  width: 600px;
+}
+
+
+
+#main .hero.is-primary.is-bold {
+  background-image: linear-gradient(141deg, #00515f 0%, #84e1e8 71%, #00e7eb 100%);
+  width: 100vw;
+}
+
+div .tab-background {
+  background-color: #025260;
+}
+
+#main .hero.is-primary .tabs.is-boxed li.is-active a {
+  color: #025260;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: azure;
+}
+
