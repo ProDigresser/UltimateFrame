@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import GFALogo from '../images/WebBannerLogoWhite.png'
 
 const FrameTool = () => {
   const [frameSize, updateFrameSize] = useState({
@@ -32,6 +33,11 @@ const FrameTool = () => {
 
   }
 
+  const [activeSt, updateActiveSt] = useState('')
+  const [activeCm, updateActiveCm] = useState('')
+  const [activeIn, updateActiveIn] = useState('')
+  const [activeFaq, updateActiveFaq] = useState('')
+
   function swapState(e) {
     e.preventDefault()
     updateFrameSize({
@@ -40,8 +46,7 @@ const FrameTool = () => {
     })
   }
 
-  function resetState(e) {
-    e.preventDefault()
+  function resetState() {
     resetFrameSize()
     updateFrameType({
       isStandard: false,
@@ -54,6 +59,9 @@ const FrameTool = () => {
     updateGenerateFrameWidth([])
     updateCornerPieces('')
     updateFrameError('')
+    updateActiveCm('')
+    updateActiveIn('')
+    updateActiveSt('')
   }
 
   function resetFrameSize() {
@@ -61,6 +69,11 @@ const FrameTool = () => {
       height: '',
       width: ''
     })
+  }
+
+  function handleFaq() {
+    resetState()
+    updateActiveFaq('is-active')
   }
 
   function handleStandard(e) {
@@ -77,6 +90,10 @@ const FrameTool = () => {
     updateCornerPieces('')
     updateFrameError('')
     updateStandardSize('')
+    updateActiveFaq('')
+    updateActiveCm('')
+    updateActiveIn('')
+    updateActiveSt('is-active')
   }
   function handleInches(e) {
     e.preventDefault()
@@ -92,6 +109,10 @@ const FrameTool = () => {
     updateCornerPieces('')
     updateFrameError('')
     updateStandardSize('Custom (Inches)')
+    updateActiveFaq('')
+    updateActiveCm('')
+    updateActiveIn('is-active')
+    updateActiveSt('')
   }
   function handleCentimeters(e) {
     e.preventDefault()
@@ -107,6 +128,10 @@ const FrameTool = () => {
     updateCornerPieces('')
     updateFrameError('')
     updateStandardSize('Custom (Centimeters)')
+    updateActiveFaq('')
+    updateActiveCm('is-active')
+    updateActiveIn('')
+    updateActiveSt('')
   }
 
   function changeSize(e) {
@@ -338,14 +363,14 @@ const FrameTool = () => {
 
 
   return <div>
-    <section className="hero is-primary is-bold is-medium mobile">
-      <div className="hero-body mobile">
-        <div className="container mobile">
-          <h2 className="subtitle has-text-centered">
-            Geeky Faye Art
-          </h2>
+    <section className="hero is-primary is-bold is-medium">
+      <div className="hero-body">
+        <div className="container">
+          <figure className="image is-4500x100">
+            <img src={GFALogo} />
+          </figure>
           <h1 className="title has-text-centered">
-            Frame Tool
+            Frame Planning Tool
           </h1>
         </div>
       </div>
@@ -353,14 +378,25 @@ const FrameTool = () => {
         <nav className="tabs is-boxed is-fullwidth">
           <div className="container">
             <ul>
-              <li onClick={handleStandard}>
-                <a className='has-text-centered'>Standardized:<br />A, B or Letter</a>
+              <li className={activeSt} onClick={handleStandard}>
+                <div className="has-background-primary-dark ml-5 mr-3">
+                  <a className='has-text-centered'>Standardized:<br />A, B or Letter</a>
+                </div>
               </li>
-              <li onClick={handleInches}>
-                <a className='has-text-centered'>Standardized:<br />A, B or Letter</a>
+              <li className={activeIn} onClick={handleInches}>
+                <div className="has-background-primary-dark ml-3 mr-3">
+                  <a className='has-text-centered'>Custom:<br />Inches</a>
+                </div>
               </li>
-              <li onClick={handleCentimeters}>
-                <a className='has-text-centered'>Custom:<br />Centimeters</a>
+              <li className={activeCm} onClick={handleCentimeters}>
+                <div className="has-background-primary-dark ml-3 mr-3">
+                  <a className='has-text-centered'>Custom:<br />Centimeters</a>
+                </div>
+              </li>
+              <li className={activeFaq} onClick={handleFaq}>
+                <div className="has-background-primary-dark ml-3 mr-5">
+                  <a className='has-text-centered'>FAQ:<br />What is This?</a>
+                </div>
               </li>
             </ul>
           </div>
@@ -369,8 +405,8 @@ const FrameTool = () => {
     </section>
     <section className='section'>
       {frameType.isStandard &&
-        <div className="field is-horizontal">
-          <div className="control">
+        <div className="field has-addons">
+          <div className="control ml-4 mr-2">
             <div className="select">
               <select value={aValue} onChange={changeSize}>
                 <option value="A Sizes">A Sizes</option>
@@ -386,7 +422,7 @@ const FrameTool = () => {
               </select>
             </div>
           </div>
-          <div className="control">
+          <div className="control mr-2 ml-2">
             <div className="select">
               <select value={bValue} onChange={changeSize}>
                 <option value="B Sizes">B Sizes</option>
@@ -405,19 +441,17 @@ const FrameTool = () => {
           <button
             onClick={changeSize}
             value="Letter"
-            className="button">
+            className="button ml-2">
             Letter
           </button>
         </div>}
 
 
-
-
       {(frameType.isStandard || frameType.isInches || frameType.isCentimeters) && <div>
         <h3>Measurements for {standardSize}</h3>
-        <div className="field is-horizontal">
-          <div className="field-label is-normal">
-            <label className="label">Height</label>
+        <div className="field has-addons">
+          <div className="control p-2">
+            <p className="label">Height</p>
           </div>
           <div className="field-body">
             <div className="field">
@@ -435,9 +469,9 @@ const FrameTool = () => {
             </div>
           </div>
         </div>
-        <div className="field is-horizontal">
-          <div className="field-label is-normal">
-            <label className="label">Width</label>
+        <div className="field has-addons">
+          <div className="control p-3">
+            <p className="label">Width</p>
           </div>
           <div className="field-body">
             <div className="field">
@@ -455,25 +489,26 @@ const FrameTool = () => {
             </div>
           </div>
         </div>
-      </div>}
 
-      <div className="buttons">
-        <button
-          className="button"
-          onClick={handleSubmit}>
-          Generate Frame
-        </button>
-        <button
-          className="button"
-          onClick={swapState}>
-          Swap Values
-        </button>
-        <button
-          className="button"
-          onClick={resetState}>
-          Reset
-        </button>
-      </div>
+
+        <div className="buttons">
+          <button
+            className="button"
+            onClick={handleSubmit}>
+            Generate Frame
+          </button>
+          <button
+            className="button"
+            onClick={swapState}>
+            Swap Values
+          </button>
+          <button
+            className="button"
+            onClick={resetState}>
+            Reset
+          </button>
+        </div>
+      </div>}
     </section>
 
     {cornerPieces !== '' && <div>
