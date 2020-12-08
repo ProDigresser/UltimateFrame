@@ -138,7 +138,7 @@ const FrameTool = () => {
     updateHoldValue(e.target.value)
     updateBValue('B Sizes')
     updateAValue('A Sizes')
-    
+
     updateCornerPieces('')
     if (e.target.value === 'Letter') {
       updateStandardSize(`${e.target.value} (Inches)`)
@@ -404,132 +404,143 @@ const FrameTool = () => {
         </nav>
       </div>
     </section>
-    <section className='form-section section'>
-      {frameType.isStandard &&
-        <div className="field has-addons">
-          <div className="control ml-4 mr-2">
-            <div className="select">
-              <select value={aValue} onChange={changeSize}>
-                <option value="A Sizes">A Sizes</option>
-                <option value="4A0">4A0</option>
-                <option value="2A0">2A0</option>
-                <option value="A0">A0</option>
-                <option value="A1">A1</option>
-                <option value="A2">A2</option>
-                <option value="A3">A3</option>
-                <option value="A4">A4</option>
-                <option value="A5">A5</option>
-                <option value="A6">A6</option>
-              </select>
-            </div>
-          </div>
-          <div className="control mr-2 ml-2">
-            <div className="select">
-              <select value={bValue} onChange={changeSize}>
-                <option value="B Sizes">B Sizes</option>
-                <option value="4B0">4B0</option>
-                <option value="2B0">2B0</option>
-                <option value="B0">B0</option>
-                <option value="B1">B1</option>
-                <option value="B2">B2</option>
-                <option value="B3">B3</option>
-                <option value="B4">B4</option>
-                <option value="B5">B5</option>
-                <option value="B6">B6</option>
-              </select>
-            </div>
-          </div>
-          <button
-            onClick={changeSize}
-            value="Letter"
-            className="button ml-2">
-            Letter
-          </button>
+    <main>
+      <section className='form-section section'>
+        <h3>What is this?</h3>
+        <p>The GFA Frame Planning Tool is a web tool built with/in (whatever you want to share about how you made it) to aid in the creation of the GFA Ultimate Picture Frame by calculating the exact pieces required to create a frame of a particular size. More information about the frames can be found <a href="https://geekyfaye.art/digital-shop/">here!</a></p>
+        
+        {activeFaq !== '' && <div className="m-3 form-container">
+          <h3>How to Use:</h3>
+          <p>Select your frame size type from the above choices (A Sizes, B Sizes, Letter, Inches, or Centimeters). Input your custom measurements or choose from the provided drop down and click the Generate Frame button. <br/>
+          Pieces will be listed according to what you need for the Top and Bottom lengths, as well as Left and Right. Keep in mind that the number provided is the amount required for BOTH listed sides (E.G. if 6 Long pieces are required for Top and Bottom then each side will use 3). <br/> 
+          Names listed (long, short, etc) will correspond to the file names. </p>
         </div>}
+        {frameType.isStandard &&
+          <div className="field has-addons">
+            <div className="control ml-4 mr-2">
+              <div className="select">
+                <select value={aValue} onChange={changeSize}>
+                  <option value="A Sizes">A Sizes</option>
+                  <option value="4A0">4A0</option>
+                  <option value="2A0">2A0</option>
+                  <option value="A0">A0</option>
+                  <option value="A1">A1</option>
+                  <option value="A2">A2</option>
+                  <option value="A3">A3</option>
+                  <option value="A4">A4</option>
+                  <option value="A5">A5</option>
+                  <option value="A6">A6</option>
+                </select>
+              </div>
+            </div>
+            <div className="control mr-2 ml-2">
+              <div className="select">
+                <select value={bValue} onChange={changeSize}>
+                  <option value="B Sizes">B Sizes</option>
+                  <option value="4B0">4B0</option>
+                  <option value="2B0">2B0</option>
+                  <option value="B0">B0</option>
+                  <option value="B1">B1</option>
+                  <option value="B2">B2</option>
+                  <option value="B3">B3</option>
+                  <option value="B4">B4</option>
+                  <option value="B5">B5</option>
+                  <option value="B6">B6</option>
+                </select>
+              </div>
+            </div>
+            <button
+              onClick={changeSize}
+              value="Letter"
+              className="button ml-2">
+              Letter
+            </button>
+          </div>}
 
 
-      {(frameType.isStandard || frameType.isInches || frameType.isCentimeters) && <div className="m-3 form-container">
-        <h3>Measurements for {standardSize}</h3>
-        <div className="field has-addons">
-          <div className="label-box control p-2">
-            <p className="label">Height</p>
-          </div>
-          <div className="field-body">
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input is-rounded"
-                  type="text"
-                  placeholder="Height"
-                  onChange={handleChange}
-                  name="height"
-                  value={frameSize.height}
-                  disabled={disabled}
-                />
-              </p>
+        {(frameType.isStandard || frameType.isInches || frameType.isCentimeters) && <div className="m-3 form-container">
+          <h3>Measurements for {standardSize}</h3>
+          <div className="field has-addons">
+            <div className="label-box control p-2">
+              <p className="label">Height</p>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <p className="control">
+                  <input
+                    className="input is-rounded"
+                    type="text"
+                    placeholder="Height"
+                    onChange={handleChange}
+                    name="height"
+                    value={frameSize.height}
+                    disabled={disabled}
+                  />
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="field has-addons">
-          <div className="label-box control p-2">
-            <p className="label">Width</p>
-          </div>
-          <div className="field-body">
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input is-rounded"
-                  type="text"
-                  placeholder="Width"
-                  onChange={handleChange}
-                  name="width"
-                  value={frameSize.width}
-                  disabled={disabled}
-                />
-              </p>
+          <div className="field has-addons">
+            <div className="label-box control p-2">
+              <p className="label">Width</p>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <p className="control">
+                  <input
+                    className="input is-rounded"
+                    type="text"
+                    placeholder="Width"
+                    onChange={handleChange}
+                    name="width"
+                    value={frameSize.width}
+                    disabled={disabled}
+                  />
+                </p>
+              </div>
             </div>
           </div>
+
+          <div className="buttons">
+            <button
+              className="button"
+              onClick={handleSubmit}>
+              Generate Frame
+            </button>
+            <button
+              className="button"
+              onClick={swapState}>
+              Swap Values
+            </button>
+            <button
+              className="button"
+              onClick={resetState}>
+              Reset
+            </button>
+          </div>
+        </div>}
+      </section>
+
+      {cornerPieces !== '' && <section className="section read-container">
+        <div>
+          <h3>Pieces required for {holdValue}:</h3>
+          <p>{cornerPieces}</p>
+          <h3>For Left & Right-</h3>
+          {generateFrameHeight.map((piece, i) => {
+
+            return <p key={i}>{piece}</p>
+
+          })}
+
+          <h3>For Top & Bottom-</h3>
+          {generateFrameWidth.map((piece, i) => {
+            return <p key={i}>{piece}</p>
+
+          })}
+          {frameError}
         </div>
-
-        <div className="buttons">
-          <button
-            className="button"
-            onClick={handleSubmit}>
-            Generate Frame
-          </button>
-          <button
-            className="button"
-            onClick={swapState}>
-            Swap Values
-          </button>
-          <button
-            className="button"
-            onClick={resetState}>
-            Reset
-          </button>
-        </div>
-      </div>}
-    </section>
-
-    {cornerPieces !== '' && <section className="section read-container">
-      <div>
-        <h3>Pieces required for {holdValue}:</h3>
-        <p>{cornerPieces}</p>
-        <h3>For Left & Right-</h3>
-        {generateFrameHeight.map((piece, i) => {
-
-          return <p key={i}>{piece}</p>
-
-        })}
-
-        <h3>For Top & Bottom-</h3>
-        {generateFrameWidth.map((piece, i) => {
-          return <p key={i}>{piece}</p>
-
-        })}
-        {frameError}
-      </div>
-    </section>}
+      </section>}
+    </main>
   </div>
 }
 
