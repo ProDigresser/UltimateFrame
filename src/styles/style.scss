@@ -1,10 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+$poppins: 'Poppins', Arial, Helvetica, sans-serif;
+
 * {
   box-sizing: border-box;
+  font-family: $poppins;
+  
 }
 
 #main .section {
   padding: 1.5rem;
   background-color: white;
+  
 }
 
 .rounded-corners {
@@ -36,8 +43,33 @@ div .tab-background {
   flex-direction: column;
   align-items: center;
   background-color: azure;
+  min-height: 100vh;
 }
 
 main {
-  min-height: 700px;
+  height: 100%;
+}
+
+h1.title {
+  font-size: 3rem;
+}
+h2.sub-heading {
+  font-size: 2rem;
+}
+h3.sub-heading {
+  font-size: 1.5rem
+}
+
+@media (pointer:coarse) {
+  li div a {
+    font-size: 1.5rem;
+  }
+  p, span, a {
+    font-size: 2rem;
+  }
+  .section.read-container, .section.form-section {
+    width: 90%;
+    margin: auto;
+  }
+
 }

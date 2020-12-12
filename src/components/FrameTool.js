@@ -406,17 +406,20 @@ const FrameTool = () => {
     </section>
     <main>
       <section className='form-section section'>
-        <h3>What is this?</h3>
-        <p>The GFA Frame Planning Tool is a web tool built with/in (whatever you want to share about how you made it) to aid in the creation of the GFA Ultimate Picture Frame by calculating the exact pieces required to create a frame of a particular size. More information about the frames can be found <a href="https://geekyfaye.art/digital-shop/">here!</a></p>
-        
+        {activeFaq === '' && <div className="m-3 form-container">
+          <h2 className="m-2 sub-heading" >How to Use:</h2>
+          <p className="mb-2">Select your frame size type from the above choices (A Sizes, B Sizes, Letter, Inches, or Centimeters). Input your custom measurements or choose from the provided drop down and click the Generate Frame button. </p>
+          <p className="mb-2">Pieces will be listed according to what you need for the Top and Bottom lengths, as well as Left and Right. Keep in mind that the number provided is the amount required for BOTH listed sides (E.G. if 6 Long pieces are required for Top and Bottom then each side will use 3).</p> 
+          <p className="mb-2">Names listed (long, short, etc) will correspond to the file names. </p>
+        </div>}
+
         {activeFaq !== '' && <div className="m-3 form-container">
-          <h3>How to Use:</h3>
-          <p>Select your frame size type from the above choices (A Sizes, B Sizes, Letter, Inches, or Centimeters). Input your custom measurements or choose from the provided drop down and click the Generate Frame button. <br/>
-          Pieces will be listed according to what you need for the Top and Bottom lengths, as well as Left and Right. Keep in mind that the number provided is the amount required for BOTH listed sides (E.G. if 6 Long pieces are required for Top and Bottom then each side will use 3). <br/> 
-          Names listed (long, short, etc) will correspond to the file names. </p>
+          <h2 className="m-2 sub-heading">What is this?</h2>
+          <p>The GFA Frame Planning Tool is a web tool built with/in (whatever you want to share about how you made it) to aid in the creation of the GFA Ultimate Picture Frame by calculating the exact pieces required to create a frame of a particular size. More information about the frames can be found <a target="_blank" rel="noreferrer" href="https://geekyfaye.art/digital-shop/">here!</a></p>
+
         </div>}
         {frameType.isStandard &&
-          <div className="field has-addons">
+          <div className="field has-addons mt-4">
             <div className="control ml-4 mr-2">
               <div className="select">
                 <select value={aValue} onChange={changeSize}>
@@ -459,7 +462,7 @@ const FrameTool = () => {
 
 
         {(frameType.isStandard || frameType.isInches || frameType.isCentimeters) && <div className="m-3 form-container">
-          <h3>Measurements for {standardSize}</h3>
+          <h3 className="sub-heading">Measurements for {standardSize}</h3>
           <div className="field has-addons">
             <div className="label-box control p-2">
               <p className="label">Height</p>
