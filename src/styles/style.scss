@@ -71,5 +71,27 @@ h3.sub-heading {
     width: 90%;
     margin: auto;
   }
+  h3.sub-heading {
+    font-size: 2.5rem;
+  }
+  button.button, div.select {
+    font-size: 1.5rem;
+  }
+  .select option {
+    font-size: 1rem;
+  }
+  p.label {
+    font-size: 1.5rem;
+  }
+  .label-box {
+    width: 140px;
+  }
+
+  div.buttons button.button {
+    font-size: 2rem;
+  }
+
+
+
 
 }
