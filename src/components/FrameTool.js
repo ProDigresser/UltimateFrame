@@ -367,7 +367,7 @@ const FrameTool = () => {
     <section className="hero is-primary is-bold is-small">
       <div className="hero-body">
         <div className="container">
-          <figure className="image is-4500x100">
+          <figure className="logo">
             <img alt="Geeky Faye Art And Logo" src={GFALogo} />
           </figure>
           <h1 className="title has-text-centered">
@@ -415,7 +415,7 @@ const FrameTool = () => {
 
         {activeFaq !== '' && <div className="m-3 form-container">
           <h2 className="m-2 sub-heading">What is this?</h2>
-          <p>The GFA Frame Planning Tool is a web tool built with/in (whatever you want to share about how you made it) to aid in the creation of the GFA Ultimate Picture Frame by calculating the exact pieces required to create a frame of a particular size. More information about the frames can be found <a target="_blank" rel="noreferrer" href="https://geekyfaye.art/digital-shop/">here!</a></p>
+          <p>The GFA Frame Planning Tool is a web tool built in React.js and styled with Bulma to aid in the creation of the GFA Ultimate Picture Frame by calculating the exact pieces required to create a frame of a particular size. More information about the frames can be found <a target="_blank" rel="noreferrer" href="https://geekyfaye.art/digital-shop/">here!</a></p>
 
         </div>}
         {frameType.isStandard &&
