@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import GFALogo from '../images/WebBannerLogoWhite.png'
+import GFALogo from '../images/KatzCreates.png'
 
 const FrameTool = () => {
   const [frameSize, updateFrameSize] = useState({
