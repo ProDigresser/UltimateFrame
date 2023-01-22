@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import GFALogo from '../images/KatzCreates.png'
+import KatzLogo from '../images/KatzCreates.png'
 
 const FrameTool = () => {
   const [frameSize, updateFrameSize] = useState({
@@ -368,7 +368,7 @@ const FrameTool = () => {
       <div className="hero-body">
         <div className="container">
           <figure className="logo">
-            <img alt="Geeky Faye Art And Logo" src={GFALogo} />
+            <img alt="Geeky Faye Art And Logo" src={KatzLogo} />
           </figure>
           <h1 className="title has-text-centered">
             Frame Planning Tool
@@ -415,7 +415,7 @@ const FrameTool = () => {
 
         {activeFaq !== '' && <div className="m-3 form-container">
           <h2 className="m-2 sub-heading">What is this?</h2>
-          <p>The GFA Frame Planning Tool is a web tool built in React.js and styled with Bulma to aid in the creation of the GFA Ultimate Picture Frame by calculating the exact pieces required to create a frame of a particular size. More information about the frames can be found <a target="_blank" rel="noreferrer" href="https://geekyfaye.art/digital-shop/">here!</a></p>
+          <p>The Frame Planning Tool is a web tool built in React.js and styled with Bulma to aid in the creation of the Ultimate Picture Frame by calculating the exact pieces required to create a frame of a particular size. More information about the frames can be found <a target="_blank" rel="noreferrer" href="https://katzcreates.com/ultimate-picture-frame-shop">here!</a></p>
 
         </div>}
         {frameType.isStandard &&
